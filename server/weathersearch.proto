@@ -1,0 +1,44 @@
+syntax = "proto3";
+package goweather;
+
+option go_package= "go-weather/server";
+
+message SearchRequest {
+  optional float location_longitude = 1;
+  optional float location_latitude = 2;
+  optional float temperature = 3;
+  optional float humidity = 4;
+}
+
+message WeatherData {
+    message Coordinate {
+        float longitude = 1;
+        float latitude = 2;
+    }
+    Coordinate location = 3;
+
+    message Maininfo {
+        float temp = 1;
+        float tempmin = 2;
+        float tempmax = 3;
+        float feelslike = 4;
+        int32 pressure = 5;
+        int32 humidity = 6;
+        int32 sealevel = 7;
+        int32 grndlevel = 8;
+    }
+    Maininfo main = 4;
+}
+
+message SearchResponse {
+    repeated WeatherData data=1;
+}
+
+service WeatherSearch {
+    rpc Search (SearchRequest) returns (SearchResponse);
+}
+
+
+
+
+

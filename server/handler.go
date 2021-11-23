@@ -4,18 +4,38 @@ import (
 	"context"
 	"fmt"
 	"go-weather/search"
+	"log"
+	"net"
 	"os"
 
 	"github.com/affanshahid/configo"
+	grpc "google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 )
 
 type Server struct {
 	UnimplementedWeatherSearchServer
 }
 
+func StartGRPCServer(port string) {
+	l, err := net.Listen("tcp", ":"+port)
+	if err != nil {
+		log.Fatal("Failed to listen")
+	}
+	s := Server{}
+	grpcServer := grpc.NewServer()
+	RegisterWeatherSearchServer(grpcServer, &s)
+	reflection.Register(grpcServer)
+	fmt.Println("Server started")
+
+	if err := grpcServer.Serve(l); err != nil {
+		log.Fatal(err)
+	}
+}
+
 func (s Server) Search(ctx context.Context, input *SearchRequest) (*SearchResponse, error) {
 	err := configo.Initialize(
-		os.DirFS("./config"),
+		os.DirFS("../config"),
 		configo.WithDeploymentFromEnv("APP_ENV"),
 	)
 	if err != nil {
@@ -24,7 +44,7 @@ func (s Server) Search(ctx context.Context, input *SearchRequest) (*SearchRespon
 
 	location := search.Coordinate{Longitude: *input.LocationLongitude, Latitude: *input.LocationLatitude}
 	conditions := search.Conditions{Temp: *input.Temperature, Humidity: int(*input.Humidity)}
-	api := search.OpenWatherApi{Url: fmt.Sprintf("api.openweathermap.org/data/2.5/find?lat=%f&lon=%f&cnt=50&units=metric&appid=%s", location.Latitude, location.Longitude, configo.MustGetString("apikey"))}
+	api := search.OpenWatherApi{Url: fmt.Sprintf("https://api.openweathermap.org/data/2.5/find?lat=%f&lon=%f&cnt=50&units=metric&appid=%s", location.Latitude, location.Longitude, configo.MustGetString("apikey"))}
 	result := api.QuickSearch(location, conditions)
 	var response SearchResponse = SearchResponse{}
 	for _, val := range result {

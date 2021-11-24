@@ -20,8 +20,8 @@ func search(conditions Conditions, data []Weatherdata) []Weatherdata {
 }
 
 //launch search go routines for slices of the data
-func (oapi OpenWatherApi) QuickSearch(location Coordinate, conditions Conditions) []Weatherdata {
-	data := oapi.fastFetchData(location)
+func QuickSearch(conditions Conditions, data []Weatherdata) []Weatherdata {
+	// data, _ := fastFetchData(location, "")
 	c := make(chan []Weatherdata)
 	var result []Weatherdata = make([]Weatherdata, 0, len(data))
 	for i := 0; i < len(data)/5; i++ {

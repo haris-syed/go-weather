@@ -1,0 +1,372 @@
+[
+    {
+      "id": 2634341,
+      "name": "City of Westminster",
+      "coord": {
+        "lat": 51.5,
+        "lon": -0.1167
+      },
+      "main": {
+        "temp": 2.18,
+        "feels_like": 2.18,
+        "temp_min": 0.3,
+        "temp_max": 4.1,
+        "pressure": 1032,
+        "humidity": 95
+      },
+      "dt": 1637647859,
+      "wind": {
+        "speed": 0.51,
+        "deg": 0
+      },
+      "sys": {
+        "country": "GB"
+      },
+      "rain": null,
+      "snow": null,
+      "clouds": {
+        "all": 43
+      },
+      "weather": [
+        {
+          "id": 802,
+          "main": "Clouds",
+          "description": "scattered clouds",
+          "icon": "03n"
+        }
+      ]
+    },
+    {
+      "id": 6545250,
+      "name": "Lambeth",
+      "coord": {
+        "lat": 51.4963,
+        "lon": -0.1115
+      },
+      "main": {
+        "temp": 2.23,
+        "feels_like": 2.23,
+        "temp_min": 0.32,
+        "temp_max": 4.12,
+        "pressure": 1032,
+        "humidity": 95
+      },
+      "dt": 1637647761,
+      "wind": {
+        "speed": 0.51,
+        "deg": 0
+      },
+      "sys": {
+        "country": "GB"
+      },
+      "rain": null,
+      "snow": null,
+      "clouds": {
+        "all": 44
+      },
+      "weather": [
+        {
+          "id": 802,
+          "main": "Clouds",
+          "description": "scattered clouds",
+          "icon": "03n"
+        }
+      ]
+    },
+    {
+      "id": 2643743,
+      "name": "London",
+      "coord": {
+        "lat": 51.5085,
+        "lon": -0.1257
+      },
+      "main": {
+        "temp": 2.11,
+        "feels_like": 2.11,
+        "temp_min": 0.2,
+        "temp_max": 4,
+        "pressure": 1032,
+        "humidity": 95
+      },
+      "dt": 1637647759,
+      "wind": {
+        "speed": 0.51,
+        "deg": 0
+      },
+      "sys": {
+        "country": "GB"
+      },
+      "rain": null,
+      "snow": null,
+      "clouds": {
+        "all": 42
+      },
+      "weather": [
+        {
+          "id": 802,
+          "main": "Clouds",
+          "description": "scattered clouds",
+          "icon": "03n"
+        }
+      ]
+    },
+    {
+      "id": 6545174,
+      "name": "Kennington",
+      "coord": {
+        "lat": 51.488,
+        "lon": -0.1057
+      },
+      "main": {
+        "temp": 2.24,
+        "feels_like": 2.24,
+        "temp_min": 0.32,
+        "temp_max": 4.13,
+        "pressure": 1032,
+        "humidity": 95
+      },
+      "dt": 1637647761,
+      "wind": {
+        "speed": 0.51,
+        "deg": 0
+      },
+      "sys": {
+        "country": "GB"
+      },
+      "rain": null,
+      "snow": null,
+      "clouds": {
+        "all": 44
+      },
+      "weather": [
+        {
+          "id": 802,
+          "main": "Clouds",
+          "description": "scattered clouds",
+          "icon": "03n"
+        }
+      ]
+    },
+    {
+      "id": 2643741,
+      "name": "City of London",
+      "coord": {
+        "lat": 51.5128,
+        "lon": -0.0918
+      },
+      "main": {
+        "temp": 2.13,
+        "feels_like": 2.13,
+        "temp_min": 0.19,
+        "temp_max": 4,
+        "pressure": 1032,
+        "humidity": 95
+      },
+      "dt": 1637647759,
+      "wind": {
+        "speed": 0.51,
+        "deg": 0
+      },
+      "sys": {
+        "country": "GB"
+      },
+      "rain": null,
+      "snow": null,
+      "clouds": {
+        "all": 44
+      },
+      "weather": [
+        {
+          "id": 802,
+          "main": "Clouds",
+          "description": "scattered clouds",
+          "icon": "03n"
+        }
+      ]
+    },
+    {
+      "id": 2643744,
+      "name": "City of London",
+      "coord": {
+        "lat": 51.5133,
+        "lon": -0.089
+      },
+      "main": {
+        "temp": 2.07,
+        "feels_like": 2.07,
+        "temp_min": 0.16,
+        "temp_max": 3.82,
+        "pressure": 1032,
+        "humidity": 95
+      },
+      "dt": 1637647861,
+      "wind": {
+        "speed": 0.51,
+        "deg": 0
+      },
+      "sys": {
+        "country": "GB"
+      },
+      "rain": null,
+      "snow": null,
+      "clouds": {
+        "all": 44
+      },
+      "weather": [
+        {
+          "id": 802,
+          "main": "Clouds",
+          "description": "scattered clouds",
+          "icon": "03n"
+        }
+      ]
+    },
+    {
+      "id": 6690574,
+      "name": "Clerkenwell",
+      "coord": {
+        "lat": 51.5244,
+        "lon": -0.1102
+      },
+      "main": {
+        "temp": 2.14,
+        "feels_like": 2.14,
+        "temp_min": 0.21,
+        "temp_max": 3.87,
+        "pressure": 1033,
+        "humidity": 95
+      },
+      "dt": 1637647760,
+      "wind": {
+        "speed": 0.51,
+        "deg": 0
+      },
+      "sys": {
+        "country": "GB"
+      },
+      "rain": null,
+      "snow": null,
+      "clouds": {
+        "all": 42
+      },
+      "weather": [
+        {
+          "id": 802,
+          "main": "Clouds",
+          "description": "scattered clouds",
+          "icon": "03n"
+        }
+      ]
+    },
+    {
+      "id": 6690593,
+      "name": "Barbican",
+      "coord": {
+        "lat": 51.5199,
+        "lon": -0.0945
+      },
+      "main": {
+        "temp": 2.14,
+        "feels_like": 2.14,
+        "temp_min": 0.19,
+        "temp_max": 3.86,
+        "pressure": 1032,
+        "humidity": 95
+      },
+      "dt": 1637647760,
+      "wind": {
+        "speed": 0.51,
+        "deg": 0
+      },
+      "sys": {
+        "country": "GB"
+      },
+      "rain": null,
+      "snow": null,
+      "clouds": {
+        "all": 44
+      },
+      "weather": [
+        {
+          "id": 802,
+          "main": "Clouds",
+          "description": "scattered clouds",
+          "icon": "03n"
+        }
+      ]
+    },
+    {
+      "id": 2648110,
+      "name": "Greater London",
+      "coord": {
+        "lat": 51.5,
+        "lon": -0.1667
+      },
+      "main": {
+        "temp": 2.08,
+        "feels_like": 2.08,
+        "temp_min": 0.24,
+        "temp_max": 4.04,
+        "pressure": 1032,
+        "humidity": 94
+      },
+      "dt": 1637647862,
+      "wind": {
+        "speed": 0.51,
+        "deg": 0
+      },
+      "sys": {
+        "country": "GB"
+      },
+      "rain": null,
+      "snow": null,
+      "clouds": {
+        "all": 40
+      },
+      "weather": [
+        {
+          "id": 802,
+          "main": "Clouds",
+          "description": "scattered clouds",
+          "icon": "03n"
+        }
+      ]
+    },
+    {
+      "id": 3333218,
+      "name": "City of Westminster",
+      "coord": {
+        "lat": 51.5,
+        "lon": -0.1667
+      },
+      "main": {
+        "temp": 2.08,
+        "feels_like": 2.08,
+        "temp_min": 0.24,
+        "temp_max": 4.04,
+        "pressure": 1032,
+        "humidity": 94
+      },
+      "dt": 1637647862,
+      "wind": {
+        "speed": 0.51,
+        "deg": 0
+      },
+      "sys": {
+        "country": "GB"
+      },
+      "rain": null,
+      "snow": null,
+      "clouds": {
+        "all": 40
+      },
+      "weather": [
+        {
+          "id": 802,
+          "main": "Clouds",
+          "description": "scattered clouds",
+          "icon": "03n"
+        }
+      ]
+    }
+  ]

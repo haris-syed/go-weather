@@ -2,6 +2,7 @@ package search
 
 import (
 	"encoding/json"
+	"errors"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -51,14 +52,21 @@ type apiresponse struct {
 	Data  []Weatherdata `json:"list"`
 }
 
-type OpenWatherApi struct {
-	Url string
+type weatherApiInterface interface {
+	fetchData(location Coordinate, url string) *apiresponse
 }
 
-// fetchData fetches data from the OpenWeather API
-//Input: location coordinates, url
-func (oapi OpenWatherApi) fetchData(location Coordinate) apiresponse {
-	resp, err := http.Get(oapi.Url)
+type OpenWeatherApiClient struct {
+}
+
+var openWeatherClient weatherApiInterface
+
+func init() {
+	openWeatherClient = OpenWeatherApiClient{}
+}
+
+func (owac OpenWeatherApiClient) fetchData(location Coordinate, url string) *apiresponse {
+	resp, err := http.Get(url)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -72,17 +80,19 @@ func (oapi OpenWatherApi) fetchData(location Coordinate) apiresponse {
 	if err := json.Unmarshal(body, &result); err != nil {
 		log.Fatal(err)
 	}
-
-	return result
+	return &result
 }
 
-// uses fetchData go routines to fecth the data from the API
-func (oapi OpenWatherApi) fastFetchData(location Coordinate) []Weatherdata {
-
-	c := make(chan apiresponse)
-	fetchReplica := func() { c <- oapi.fetchData(location) }
+// uses fetchData go routines to fetch the data from the API
+func FastFetchData(location Coordinate, url string) ([]Weatherdata, error) {
+	c := make(chan *apiresponse)
+	fetchReplica := func() { c <- openWeatherClient.fetchData(location, url) }
 	for i := 0; i < 5; i++ {
 		go fetchReplica()
 	}
-	return (<-c).Data
+	fastestResponse := <-c
+	if fastestResponse == nil {
+		return nil, errors.New("no response from server")
+	}
+	return fastestResponse.Data, nil
 }

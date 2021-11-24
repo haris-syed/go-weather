@@ -2,9 +2,8 @@ package search
 
 import (
 	"encoding/json"
-	"errors"
+	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 )
 
@@ -52,47 +51,50 @@ type apiresponse struct {
 	Data  []Weatherdata `json:"list"`
 }
 
-type weatherApiInterface interface {
-	fetchData(location Coordinate, url string) *apiresponse
+type WeatherApiInterface interface {
+	FetchData(location Coordinate, url string) ([]Weatherdata, error)
 }
 
 type OpenWeatherApiClient struct {
 }
 
-var openWeatherClient weatherApiInterface
-
-func init() {
-	openWeatherClient = OpenWeatherApiClient{}
-}
-
-func (owac OpenWeatherApiClient) fetchData(location Coordinate, url string) *apiresponse {
+func (owac OpenWeatherApiClient) FetchData(location Coordinate, url string) ([]Weatherdata, error) {
 	resp, err := http.Get(url)
 	if err != nil {
-		log.Fatal(err)
+		return nil, fmt.Errorf("unable to fetch from the api: %w", err)
 	}
 	defer resp.Body.Close()
+
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		log.Fatal(err)
+		return nil, fmt.Errorf("unable to parse the data: %w", err)
 	}
 
 	var result apiresponse
 	if err := json.Unmarshal(body, &result); err != nil {
-		log.Fatal(err)
+		return nil, fmt.Errorf("unable to parse the data: %w", err)
 	}
-	return &result
+	return result.Data, nil
+}
+
+type fetchResult struct {
+	data []Weatherdata
+	err  error
 }
 
 // uses fetchData go routines to fetch the data from the API
-func FastFetchData(location Coordinate, url string) ([]Weatherdata, error) {
-	c := make(chan *apiresponse)
-	fetchReplica := func() { c <- openWeatherClient.fetchData(location, url) }
+func FastFetchData(location Coordinate, url string, client WeatherApiInterface) ([]Weatherdata, error) {
+	c := make(chan fetchResult)
+	fetchReplica := func() {
+		data, err := client.FetchData(location, url)
+		c <- fetchResult{data: data, err: err}
+	}
 	for i := 0; i < 5; i++ {
 		go fetchReplica()
 	}
 	fastestResponse := <-c
-	if fastestResponse == nil {
-		return nil, errors.New("no response from server")
+	if fastestResponse.data == nil {
+		return nil, fastestResponse.err
 	}
-	return fastestResponse.Data, nil
+	return fastestResponse.data, nil
 }

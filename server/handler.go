@@ -49,7 +49,8 @@ func (s Server) Search(ctx context.Context, input *SearchRequest) (*SearchRespon
 			"https://api.openweathermap.org/data/2.5/find?lat=%f&lon=%f&cnt=50&units=metric&appid=%s",
 			location.Latitude,
 			location.Longitude,
-			configo.MustGetString("apikey")))
+			configo.MustGetString("apikey")),
+		search.OpenWeatherApiClient{})
 	if err != nil {
 		panic(err)
 	}
